@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 10f)]
     public float verticalLookSensitivity = 1;
     
+    [Range(0f, 10f)]
+    public float jumpForce;
 
     [SerializeField]
     private Animator animator;
@@ -35,8 +37,9 @@ public class PlayerController : MonoBehaviour
         this.playerStatistics = new PlayerStatistics(
         this.currentPlayer, 
         this.animator,
-        this.speed, 
         this.camera,
+        this.speed, 
+        this.jumpForce,
         this.HorizontalLookSensitivity,
         this.verticalLookSensitivity
         );
@@ -50,8 +53,13 @@ public class PlayerController : MonoBehaviour
     */
     void Update()
     {   
+        
         //Rotate Player and Camera
         this.playerStatistics.RotatePlayerWithMousePosition();
+
+        //call IENUMERATOR CheckJump()
+        StartCoroutine(this.playerStatistics.CheckJump());
+
         //Move Player
         this.playerStatistics.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
        

@@ -1,4 +1,5 @@
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,18 +19,24 @@ namespace PlayerComponents
         private GameObject camera;
         private Animator animator;
 
+        private float jumpForce;
+
+
         public PlayerStatistics(
         GameObject player, 
         Animator animator,
-        float speed, 
         GameObject camera,
+        float speed, 
+        float jumpForce,
         float HorizontalLookSensitivity,
         float verticalLookSensitivity)
         {   
             this.player = player;
             this.animator = animator;
-            this.speed = speed;
             this.camera = camera;
+
+            this.speed = speed;
+            this.jumpForce = jumpForce;
             
             this.HorizontalLookSensitivity = HorizontalLookSensitivity;
             this.verticalLookSensitivity = verticalLookSensitivity;
@@ -43,14 +50,28 @@ namespace PlayerComponents
         */
         public void RotatePlayerWithMousePosition()
         {
-           //Rotate Player
+            //calcula qual será o ângulo da câmera após o movimento do mouse Y
+            float angle = this.camera.transform.eulerAngles.x - Input.GetAxis("Mouse Y") * this.verticalLookSensitivity;
+            if(angle < 0 ||  angle > 90) return;
+            //Rotate Player
             this.player.transform.Rotate(0, Input.GetAxis("Mouse X") * this.HorizontalLookSensitivity , 0);
-            //Rotate Camera
+            //verify if xRotation is between 0 and 90, se sim, rotate camera
             this.camera.transform.Rotate(-Input.GetAxis("Mouse Y") * this.verticalLookSensitivity, 0, 0);
         }
 
+        //coroutine to wait for animation to finish
+        public IEnumerator CheckJump()
+        {
+              //jump player if press space
+            if (Input.GetKeyDown(KeyCode.Space)){
+                this.animator.SetTrigger("hasJump");
+                 yield return new WaitForSeconds(0.5f);
+                 this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * this.jumpForce, ForceMode.Impulse);
+            }
+            
+        }
 
-
+    
 
         /**
         @author Vitor Hugo
@@ -75,14 +96,12 @@ namespace PlayerComponents
 
             //Atualiza a Força adicionada no objeto
             this.player.GetComponent<Rigidbody>().AddForce(movement * this.speed);
-            //não deixar o player "deslizar"
-            this.player.GetComponent<Rigidbody>().velocity = new Vector3(
-                Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.x, -this.speed, this.speed),
-                0,
-                Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.z, -this.speed, this.speed)
-            );
-
-        
+            //não deixar o player "deslizar" (ESTÁ BUGANDO O PULO, CORRIGIR ANTES DE DESCOMENTAR)
+            // this.player.GetComponent<Rigidbody>().velocity = new Vector3(
+            //     Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.x, -this.speed, this.speed),
+            //     0,
+            //     Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.z, -this.speed, this.speed)
+            // );
 
         }
 
