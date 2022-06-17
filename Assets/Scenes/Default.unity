@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6da5e9ddc0fce74459441a0ab2a26285, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -754,6 +754,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1314511458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2520963540877952581, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+  m_PrefabInstance: {fileID: 1504212315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1481728008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4160500810198864696, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+  m_PrefabInstance: {fileID: 1504212315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1504212315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,6 +774,26 @@ PrefabInstance:
     - target: {fileID: 854597916695469847, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154022748018915711, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_Name
+      value: SWORD
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481513591452884363, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: Sword
+      value: 
+      objectReference: {fileID: 1314511458}
+    - target: {fileID: 2481513591452884363, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 697330666}
+    - target: {fileID: 2481513591452884363, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 697330674}
+    - target: {fileID: 2520963540877952581, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3847251749896228833, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_Name
@@ -783,8 +813,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153804041459443238, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_ClearFlags
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4153804041459443238, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804041459443238, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: Sword
+      value: 
+      objectReference: {fileID: 1314511458}
     - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: force
       value: 2
@@ -812,10 +854,14 @@ PrefabInstance:
     - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: groundChecker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1481728008}
     - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: JumpMultiplier
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: AllowDoubleJump
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4153804042946540586, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_IsTrigger

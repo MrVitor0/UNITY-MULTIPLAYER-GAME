@@ -11,12 +11,17 @@ namespace PlayerComponents
         public GameObject player;
         public GameObject camera;
         public GameObject groundChecker;
+        public GameObject Sword;
+
         public Animator animator;
         //Sensivity of the mouse
         [Range(0f, 10f)]
         public float HorizontalLookSensitivity = 1;
         [Range(0f, 10f)]
         public float verticalLookSensitivity = 1;
+
+        
+
         //Float/Integers variables
         [Range(0f, 10f)]
         public float speed;
@@ -70,24 +75,22 @@ namespace PlayerComponents
             //jump player if press space    
             if ( Input.GetKeyDown(KeyCode.Space) && isGrounded ){
                  this.isJumping = true;
+                 this.isRunning = false;
                  this.animator.SetTrigger("hasJump");
                 //  yield return new WaitForSeconds(0.5f);
                  this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * (this.speed * this.JumpMultiplier), ForceMode.Impulse);
               
             }
             else if ( Input.GetKeyDown(KeyCode.Space) && !isGrounded && this.AllowDoubleJump){
-                
                 if( this.jumpCount < 1){
-                     this.isJumping = true;
+                    this.isJumping = true;
+                    this.isRunning = false;
                     //bool DoubleJump = true;
                     this.animator.SetTrigger("DoubleJump");
-                    Debug.Log(this.jumpCount);
                     //  yield return new WaitForSeconds(0.5f);
                     this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * (this.speed * this.JumpMultiplier), ForceMode.Impulse);
                     this.jumpCount++;
                 }
-               
-               
             }
         }
         /**
@@ -101,13 +104,15 @@ namespace PlayerComponents
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {       
                     if (Input.GetKeyDown(KeyCode.LeftShift) && this.isGround && !this.isJumping ){
-                  
+                        //hide sword if player is running
+                        this.Sword.SetActive(false);
                         this.isRunning = true;
                         this.speed = this.speed * this.force;
                         this.animator.SetBool("isRunning", true);
                     }
                     if (Input.GetKeyUp(KeyCode.LeftShift)){
                         this.isRunning = false;
+                        this.Sword.SetActive(true);
                         this.speed = this.speed / this.force;
                         if(this.speed < 1){
                             this.speed = 1;
@@ -119,7 +124,8 @@ namespace PlayerComponents
             {
                 //if player is running, play idle animation
                 if (this.isRunning)
-                {
+                {   
+                    this.Sword.SetActive(true);
                     this.animator.SetBool("isRunning", false);
                     this.isRunning = false;
                 }
