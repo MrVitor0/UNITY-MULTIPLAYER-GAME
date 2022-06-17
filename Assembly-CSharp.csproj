@@ -36,10 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Player\class\PlayerStatistics.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Player\class\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Game\GameController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Player\class\PlayerStatistics.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -625,6 +624,12 @@
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Sysroot.Linux_x86_64">
+        <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+        <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -645,12 +650,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Sysroot.Linux_x86_64">
-        <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
-        <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
     </Reference>
     <Reference Include="Unity.SysrootPackage.Editor">
         <HintPath>X:\Unity Engine\UNITY-MULTIPLAYER-GAME\Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>

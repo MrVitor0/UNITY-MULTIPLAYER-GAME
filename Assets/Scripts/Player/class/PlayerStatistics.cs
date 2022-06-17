@@ -8,24 +8,25 @@ using UnityEngine;
 
 namespace PlayerComponents
 {
-
     public class PlayerStatistics : MonoBehaviour 
     {
-
-        private float speed;
-      
+        //Sensitivity of the mouse
         private float HorizontalLookSensitivity = 1;
         private float verticalLookSensitivity = 1;
-
+        //GameObjects used in the script
         private GameObject player;
         private GameObject camera;
         private Animator animator;
-
+        //Float/Integers variables
         private float jumpForce;
-
-
+        private float speed;
+        //Bool variables
         private bool isRunning = false;
-
+        /**
+            @author Vitor Hugo
+            @version 1.0
+            @brief This constructor is used to declare the variables;
+        */
         public PlayerStatistics(
         GameObject player, 
         Animator animator,
@@ -45,8 +46,6 @@ namespace PlayerComponents
             this.HorizontalLookSensitivity = HorizontalLookSensitivity;
             this.verticalLookSensitivity = verticalLookSensitivity;
         }
-
-
         /**
             @author Vitor Hugo
             @version 1.0
@@ -62,9 +61,11 @@ namespace PlayerComponents
             //verify if xRotation is between 0 and 90, se sim, rotate camera
             this.camera.transform.Rotate(-Input.GetAxis("Mouse Y") * this.verticalLookSensitivity, 0, 0);
         }
-        
-
-        //coroutine to wait for animation to finish
+       /**
+            @author Vitor Hugo
+            @version 1.0
+            @brief This method is used to change hasJump state;
+       */
         public IEnumerator CheckJump()
         {
            //jump player if press space
@@ -74,30 +75,39 @@ namespace PlayerComponents
                  this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * this.jumpForce, ForceMode.Impulse);
             }
         }
-
-
-
+        /**
+            @author Vitor Hugo
+            @version 1.0
+            @brief This method is used to change isMoving state;
+       */
        public void checkRunning()
          {
-            //onkeydown
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                this.isRunning = true;
-                this.animator.SetBool("isRunning", true);
+            //check if any horizontal or vertical input is pressed
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {   
+                    if (Input.GetKeyDown(KeyCode.LeftShift) ){
+                        this.isRunning = true;
+                        this.animator.SetBool("isRunning", true);
+                    }
+                    if (Input.GetKeyUp(KeyCode.LeftShift)){
+                        this.isRunning = false;
+                        this.animator.SetBool("isRunning", false);
+                    }
             }
-            //onkeyup
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            else
             {
-                this.isRunning = false;
-                this.animator.SetBool("isRunning", false);
+                //if player is running, play idle animation
+                if (this.isRunning)
+                {
+                    this.animator.SetBool("isRunning", false);
+                    this.isRunning = false;
+                }
             }
          }
-
-
         /**
-        @author Vitor Hugo
-        @version 1.0
-        @brief This class is used to move player;
+            @author Vitor Hugo
+            @version 1.0
+            @brief This method is used to move player;
         */
         public void Move(float Horizontal = 0, float Vertical = 0)
         {   
@@ -111,22 +121,11 @@ namespace PlayerComponents
             //Corrige a rotação do personagem
             movement = this.player.transform.rotation * movement;
             this.player.transform.position += movement * this.speed * Time.deltaTime;
-
             //ativa o animator
             this.animator.SetBool("isWalking", true);
-
             //Atualiza a Força adicionada no objeto
             this.player.GetComponent<Rigidbody>().AddForce(movement * this.speed);
-            //não deixar o player "deslizar" (ESTÁ BUGANDO O PULO, CORRIGIR ANTES DE DESCOMENTAR)
-            // this.player.GetComponent<Rigidbody>().velocity = new Vector3(
-            //     Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.x, -this.speed, this.speed),
-            //     0,
-            //     Mathf.Clamp(this.player.GetComponent<Rigidbody>().velocity.z, -this.speed, this.speed)
-            // );
-
         }
-
-
     }
 }
 
