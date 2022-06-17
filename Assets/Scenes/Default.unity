@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 59012510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.85, y: 0.18, z: -0.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8076359, y: 1.8076359, z: 1.8076359}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -331,6 +331,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &209708160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4153804041459443225, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+  m_PrefabInstance: {fileID: 1504212315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &697330666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3847251749896228833, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
@@ -779,6 +784,38 @@ PrefabInstance:
     - target: {fileID: 4153804041459443238, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_ClearFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: force
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 209708160}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 697330666}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 697330674}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: groundChecker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540584, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: JumpMultiplier
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4153804042946540586, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_IsTrigger

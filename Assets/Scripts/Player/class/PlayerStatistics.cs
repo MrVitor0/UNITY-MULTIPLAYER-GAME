@@ -12,26 +12,37 @@ namespace PlayerComponents
         public GameObject camera;
         public GameObject groundChecker;
         public Animator animator;
-    
         //Sensivity of the mouse
         [Range(0f, 10f)]
         public float HorizontalLookSensitivity = 1;
         [Range(0f, 10f)]
         public float verticalLookSensitivity = 1;
-        
         //Float/Integers variables
-        [SerializeField]
-        private float speed;
         [Range(0f, 10f)]
-        public float jumpForce;
-
-  
+        public float speed;
+        [Range(0f, 10f)]
+        public  float force;
+        [Range(0f, 10f)]
+        public  float JumpMultiplier;
         //Bool variables
         private bool isRunning = false;
+        private bool isGround;
+ 
+        public  bool AllowDoubleJump = false;
+        private int jumpCount = 0;
         private bool isJumping;
 
+        //method to check if player object is tounch the ground with tag "Ground"
+        public bool IsGrounded()
+        {       
+            this.isGround = Physics.Raycast(groundChecker.transform.position, Vector3.down, 0.1f);
+            if(this.isGround){
+                this.jumpCount = 0;
+                this.isJumping = false;
+            }
+            return this.isGround;
+        }
 
-      
         /**
             @author Vitor Hugo
             @version 1.0
@@ -47,19 +58,36 @@ namespace PlayerComponents
             //verify if xRotation is between 0 and 90, se sim, rotate camera
             this.camera.transform.Rotate(-Input.GetAxis("Mouse Y") * this.verticalLookSensitivity, 0, 0);
         }
+
        /**
             @author Vitor Hugo
             @version 1.0
             @brief This method is used to change hasJump state;
        */
-        public IEnumerator CheckJump()
+        public void CheckJump()
         {
-          
-            //jump player if press space
-            if (Input.GetKeyDown(KeyCode.Space)){
+            bool isGrounded = this.IsGrounded();
+            //jump player if press space    
+            if ( Input.GetKeyDown(KeyCode.Space) && isGrounded ){
+                 this.isJumping = true;
                  this.animator.SetTrigger("hasJump");
-                 yield return new WaitForSeconds(0.5f);
-                 this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * this.jumpForce, ForceMode.Impulse);
+                //  yield return new WaitForSeconds(0.5f);
+                 this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * (this.speed * this.JumpMultiplier), ForceMode.Impulse);
+              
+            }
+            else if ( Input.GetKeyDown(KeyCode.Space) && !isGrounded && this.AllowDoubleJump){
+                
+                if( this.jumpCount < 1){
+                     this.isJumping = true;
+                    //bool DoubleJump = true;
+                    this.animator.SetTrigger("DoubleJump");
+                    Debug.Log(this.jumpCount);
+                    //  yield return new WaitForSeconds(0.5f);
+                    this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * (this.speed * this.JumpMultiplier), ForceMode.Impulse);
+                    this.jumpCount++;
+                }
+               
+               
             }
         }
         /**
@@ -69,18 +97,21 @@ namespace PlayerComponents
        */
        public void checkRunning()
          {
-            Debug.Log(this.speed);
             //check if any horizontal or vertical input is pressed
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {   
-                    if (Input.GetKeyDown(KeyCode.LeftShift) ){
+            {       
+                    if (Input.GetKeyDown(KeyCode.LeftShift) && this.isGround && !this.isJumping ){
+                  
                         this.isRunning = true;
-                        this.speed = this.speed * 1.5f;
+                        this.speed = this.speed * this.force;
                         this.animator.SetBool("isRunning", true);
                     }
                     if (Input.GetKeyUp(KeyCode.LeftShift)){
                         this.isRunning = false;
-                        this.speed = this.speed / 1.5f;
+                        this.speed = this.speed / this.force;
+                        if(this.speed < 1){
+                            this.speed = 1;
+                        }
                         this.animator.SetBool("isRunning", false);
                     }
             }
