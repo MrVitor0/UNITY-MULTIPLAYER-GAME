@@ -1,5 +1,7 @@
 
 
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +23,8 @@ namespace PlayerComponents
 
         private float jumpForce;
 
+
+        private bool isRunning = false;
 
         public PlayerStatistics(
         GameObject player, 
@@ -58,20 +62,36 @@ namespace PlayerComponents
             //verify if xRotation is between 0 and 90, se sim, rotate camera
             this.camera.transform.Rotate(-Input.GetAxis("Mouse Y") * this.verticalLookSensitivity, 0, 0);
         }
+        
 
         //coroutine to wait for animation to finish
         public IEnumerator CheckJump()
         {
-              //jump player if press space
+           //jump player if press space
             if (Input.GetKeyDown(KeyCode.Space)){
                 this.animator.SetTrigger("hasJump");
                  yield return new WaitForSeconds(0.5f);
                  this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * this.jumpForce, ForceMode.Impulse);
             }
-            
         }
 
-    
+
+
+       public void checkRunning()
+         {
+            //check if left shift is being hold
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                this.isRunning = true;
+                //set bool just one time
+                this.animator.SetBool("isRunning", true);
+            }
+            else
+            {
+               this.animator.SetBool("isRunning", false);
+            }
+         }
+
 
         /**
         @author Vitor Hugo

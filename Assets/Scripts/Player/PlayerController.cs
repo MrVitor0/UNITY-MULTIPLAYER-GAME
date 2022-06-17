@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
         //call IENUMERATOR CheckJump()
         StartCoroutine(this.playerStatistics.CheckJump());
 
+        //Check if player is running
+        this.playerStatistics.checkRunning();
+
         //Move Player
         this.playerStatistics.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
        
