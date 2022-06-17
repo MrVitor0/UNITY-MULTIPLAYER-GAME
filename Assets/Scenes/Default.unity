@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 59012513}
   - component: {fileID: 59012512}
   - component: {fileID: 59012511}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,8 +756,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 854597916695469847, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3847251749896228833, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847251749896228833, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4153804041459443224, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
@@ -771,6 +779,10 @@ PrefabInstance:
     - target: {fileID: 4153804041459443238, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: m_ClearFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153804042946540586, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153804042946540599, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
       propertyPath: speed
@@ -832,7 +844,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4153804042946540598, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a2bc4aa8a264afd4c9920e707138041c, type: 3}
 --- !u!1 &1803398083
 GameObject:

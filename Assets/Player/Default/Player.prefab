@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 8835885200924148503}
   - component: {fileID: 162416836140896016}
   m_Layer: 0
-  m_Name: Ch14
+  m_Name: Player_Fisic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,11 +677,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132297153647019337}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4481081326985860443}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &162416836140896016
 SkinnedMeshRenderer:
@@ -1042,7 +1042,6 @@ GameObject:
   - component: {fileID: 4153804042946540586}
   - component: {fileID: 4153804042946540584}
   - component: {fileID: 4153804042946540599}
-  - component: {fileID: 4153804042946540598}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1061,10 +1060,11 @@ Transform:
   m_LocalPosition: {x: 1.191, y: 0.39, z: -0.5589752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4153804041459443224}
   - {fileID: 8835885200924148503}
   - {fileID: 8250503760849057231}
-  - {fileID: 4153804041459443224}
   - {fileID: 4153804041523074143}
+  - {fileID: 8791158061209981176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1124,21 +1124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayer: {fileID: 3847251749896228833}
   camera: {fileID: 4153804041459443225}
-  speed: 2
+  animator: {fileID: 0}
   HorizontalLookSensitivity: 1
   verticalLookSensitivity: 1
---- !u!114 &4153804042946540598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847251749896228833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362a73d76eba04b4aa9bd44d1055abea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 2
+  jumpForce: 0
 --- !u!1 &3936223419811589306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1160,7 @@ Transform:
   - {fileID: 5258582221371802352}
   - {fileID: 8509363075749824092}
   m_Father: {fileID: 4481081326985860443}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4020351336769231813
 GameObject:
@@ -1262,7 +1252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4481081326985860443}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4153804041459443238
 Camera:
@@ -1400,6 +1390,50 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &4160500810198864696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8791158061209981176}
+  - component: {fileID: 854597916695469847}
+  m_Layer: 0
+  m_Name: GroundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8791158061209981176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160500810198864696}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.027999997, y: 0.036000013, z: -0.14700001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4481081326985860443}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &854597916695469847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160500810198864696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46414334, y: 0.11721784, z: 0.21779618}
+  m_Center: {x: -0.008749276, y: -0.029536247, z: 0.12528549}
 --- !u!1 &4303863167530103030
 GameObject:
   m_ObjectHideFlags: 0

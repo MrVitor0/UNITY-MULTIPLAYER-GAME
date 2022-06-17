@@ -10,37 +10,10 @@ using PlayerComponents;
 public class PlayerController : MonoBehaviour
 {
     //GameObjects used in the script
-    public GameObject currentPlayer;
-    public GameObject camera;
-    public Animator animator;
-   
-    //Sensivity of the mouse
-    [Range(0f, 10f)]
-    public float HorizontalLookSensitivity = 1;
-    [Range(0f, 10f)]
-    public float verticalLookSensitivity = 1;
-    
-    //Float/Integers variables
-    [SerializeField]
-    private float speed;
-    [Range(0f, 10f)]
-    public float jumpForce;
-
-    //Class Type variables
     private PlayerStatistics playerStatistics;
-
     private void Start()
     {
-        //change value of this.playerStatistics to this.currentPlayer
-        this.playerStatistics = new PlayerStatistics(
-        this.currentPlayer, 
-        this.animator,
-        this.camera,
-        this.speed, 
-        this.jumpForce,
-        this.HorizontalLookSensitivity,
-        this.verticalLookSensitivity
-        );
+      this.playerStatistics = this.GetComponent<PlayerStatistics>();
     }
 
     /**

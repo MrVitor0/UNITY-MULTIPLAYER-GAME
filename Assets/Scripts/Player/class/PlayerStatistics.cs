@@ -1,7 +1,3 @@
-
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,42 +6,32 @@ namespace PlayerComponents
 {
     public class PlayerStatistics : MonoBehaviour 
     {
-        //Sensitivity of the mouse
-        private float HorizontalLookSensitivity = 1;
-        private float verticalLookSensitivity = 1;
+
         //GameObjects used in the script
-        private GameObject player;
-        private GameObject camera;
-        private Animator animator;
+        public GameObject player;
+        public GameObject camera;
+        public GameObject groundChecker;
+        public Animator animator;
+    
+        //Sensivity of the mouse
+        [Range(0f, 10f)]
+        public float HorizontalLookSensitivity = 1;
+        [Range(0f, 10f)]
+        public float verticalLookSensitivity = 1;
+        
         //Float/Integers variables
-        private float jumpForce;
+        [SerializeField]
         private float speed;
+        [Range(0f, 10f)]
+        public float jumpForce;
+
+  
         //Bool variables
         private bool isRunning = false;
-        /**
-            @author Vitor Hugo
-            @version 1.0
-            @brief This constructor is used to declare the variables;
-        */
-        public PlayerStatistics(
-        GameObject player, 
-        Animator animator,
-        GameObject camera,
-        float speed, 
-        float jumpForce,
-        float HorizontalLookSensitivity,
-        float verticalLookSensitivity)
-        {   
-            this.player = player;
-            this.animator = animator;
-            this.camera = camera;
+        private bool isJumping;
 
-            this.speed = speed;
-            this.jumpForce = jumpForce;
-            
-            this.HorizontalLookSensitivity = HorizontalLookSensitivity;
-            this.verticalLookSensitivity = verticalLookSensitivity;
-        }
+
+      
         /**
             @author Vitor Hugo
             @version 1.0
@@ -68,9 +54,10 @@ namespace PlayerComponents
        */
         public IEnumerator CheckJump()
         {
-           //jump player if press space
+          
+            //jump player if press space
             if (Input.GetKeyDown(KeyCode.Space)){
-                this.animator.SetTrigger("hasJump");
+                 this.animator.SetTrigger("hasJump");
                  yield return new WaitForSeconds(0.5f);
                  this.player.GetComponent<Rigidbody>().AddForce(Vector3.up * this.jumpForce, ForceMode.Impulse);
             }
@@ -82,15 +69,18 @@ namespace PlayerComponents
        */
        public void checkRunning()
          {
+            Debug.Log(this.speed);
             //check if any horizontal or vertical input is pressed
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {   
                     if (Input.GetKeyDown(KeyCode.LeftShift) ){
                         this.isRunning = true;
+                        this.speed = this.speed * 1.5f;
                         this.animator.SetBool("isRunning", true);
                     }
                     if (Input.GetKeyUp(KeyCode.LeftShift)){
                         this.isRunning = false;
+                        this.speed = this.speed / 1.5f;
                         this.animator.SetBool("isRunning", false);
                     }
             }
