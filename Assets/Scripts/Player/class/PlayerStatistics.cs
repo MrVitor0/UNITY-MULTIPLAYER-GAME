@@ -79,16 +79,17 @@ namespace PlayerComponents
 
        public void checkRunning()
          {
-            //check if left shift is being hold
-            if (Input.GetKey(KeyCode.LeftShift))
+            //onkeydown
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 this.isRunning = true;
-                //set bool just one time
                 this.animator.SetBool("isRunning", true);
             }
-            else
+            //onkeyup
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-               this.animator.SetBool("isRunning", false);
+                this.isRunning = false;
+                this.animator.SetBool("isRunning", false);
             }
          }
 
